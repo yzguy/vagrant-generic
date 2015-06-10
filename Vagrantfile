@@ -11,7 +11,7 @@ Vagrant.configure('2') do |config|
     config.vm.define 'node1' do |node1|
         node1.vm.box = node1_box
         node1.vm.hostname = 'node1.vagrant.local'
-        node1.vm.network 'private_network', ip: '10.10.10.10'
+        node1.vm.network 'private_network', ip: '192.168.0.10'
 
         # VM Configuration
         node1.vm.provider :virtualbox do |vbox|
@@ -27,8 +27,8 @@ Vagrant.configure('2') do |config|
 
         # hosts configuration
         node1.vm.provision :hosts do |hosts|
-            hosts.add_host '10.10.10.20', ['node2.vagrant.local', 'node2']
-            hosts.add_host '10.10.10.30', ['node3.vagrant.local', 'node3']
+            hosts.add_host '192.168.0.20', ['node2.vagrant.local', 'node2']
+            hosts.add_host '192.168.0.30', ['node3.vagrant.local', 'node3']
         end
     end
 
@@ -36,7 +36,7 @@ Vagrant.configure('2') do |config|
     config.vm.define 'node2' do |node2|
         node2.vm.box = node2_box
         node2.vm.hostname = 'node2.vagrant.local'
-        node2.vm.network 'private_network', ip: '10.10.10.20'
+        node2.vm.network 'private_network', ip: '192.168.0.20'
 
         # VM Configuration
         node2.vm.provider :virtualbox do |vbox|
@@ -52,15 +52,15 @@ Vagrant.configure('2') do |config|
 
         # hosts configuration
         node2.vm.provision :hosts do |hosts|
-            hosts.add_host '10.10.10.10', ['node1.vagrant.local', 'node1']
-            hosts.add_host '10.10.10.30', ['node3.vagrant.local', 'node3']
+            hosts.add_host '192.168.0.10', ['node1.vagrant.local', 'node1']
+            hosts.add_host '192.168.0.30', ['node3.vagrant.local', 'node3']
 	      end
     end
 
     config.vm.define 'node3' do |node3|
         node3.vm.box = node3_box
         node3.vm.hostname = 'node3.vagrant.local'
-        node3.vm.network 'private_network', ip: '10.10.10.30'
+        node3.vm.network 'private_network', ip: '192.168.0.30'
 
         # VM Configuration
         node3.vm.provider :virtualbox do |vbox|
@@ -76,8 +76,8 @@ Vagrant.configure('2') do |config|
 
         # hosts configuration
         node3.vm.provision :hosts do |hosts|
-            hosts.add_host '10.10.10.10', ['node1.vagrant.local', 'node1']
-            hosts.add_host '10.10.10.20', ['node2.vagrant.local', 'node2']
+            hosts.add_host '192.168.0.10', ['node1.vagrant.local', 'node1']
+            hosts.add_host '192.168.0.20', ['node2.vagrant.local', 'node2']
         end
     end
 end
